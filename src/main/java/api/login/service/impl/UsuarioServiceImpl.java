@@ -3,6 +3,7 @@ package api.login.service.impl;
 import api.login.model.EnderecoModel;
 import api.login.model.UsuarioModel;
 import api.login.repository.EnderecoRepository;
+import api.login.repository.LoginRepository;
 import api.login.repository.UsuarioRepository;
 import api.login.service.UsuarioService;
 import api.login.service.ViaCepService;
@@ -21,6 +22,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     private EnderecoRepository enderecoRepository;
     @Autowired
     private ViaCepService viaCepService;
+    @Autowired
+    private LoginRepository loginRepository;
 
     // Strategy: Implementar os métodos definidos na interface.
     // Facade: Abstrair integrações com subsistemas, provendo uma interface simples.
@@ -56,6 +59,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void deletar(Long id) {
         // Deletar Usuario por ID.
         usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public UsuarioModel loginUsuario(String email, String senha) {
+        return loginRepository.findByEmailAndSenha(email, senha);
     }
 
     private void salvarUsuarioComCep(UsuarioModel usuarioModel) {
