@@ -12,6 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * - OpenFeign
  *
  * @author sauol
+ * Descrição: Inspirado no repositorio "lab-padroes-projeto-spring" de Venilton FalvoJr.
  */
 
 @EnableFeignClients
